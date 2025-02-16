@@ -25,6 +25,7 @@ passport.use(
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: '/auth/google/callback', // when the user give us permission to access their profile, the user is thrown back to this URL with a code from google attached to the URL
+      proxy: true,
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({

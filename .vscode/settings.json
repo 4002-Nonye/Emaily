@@ -1,0 +1,16 @@
+{ "typescript.suggest.paths": false ,
+ "javascript.suggest.paths": false,"workbench.colorTheme": "Monokai Dimmed",
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": true,
+  "workbench.statusBar.visible": true,
+  "editor.formatOnSave": false,
+  "editor.wordWrap": "on",
+  "editor.trimAutoWhitespace": false,
+  "eslint.run": "onSave",
+
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#333333",
+    "statusBar.noFolderBackground": "#333333",
+    "statusBar.debuggingBackground": "#263238"
+  } }

@@ -13,4 +13,4 @@ const userSchema = new Schema({
 });
 
 // To create a collection of users (Table of users)
-mongoose.model('users', userSchema); // two arguments means we are trying to create a collection
+mongoose.model('User', userSchema); // two arguments means we are trying to create a collection

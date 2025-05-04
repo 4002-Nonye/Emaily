@@ -6,7 +6,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
-const User = mongoose.model('users'); // one argument means we are trying to fetch the collection
+const User = mongoose.model('User'); // one argument means we are trying to fetch the collection
 
 // We use serializeUser to uniquely identify a user and pass that unique ID as a token(cookie)
 passport.serializeUser((user, done) => {

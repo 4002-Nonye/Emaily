@@ -14,7 +14,6 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  // Search our User collection and return the ID that matches the ID stored in passport
   User.findById(id).then((user) => done(null, user));
 });
 
@@ -27,22 +26,18 @@ passport.use(
       callbackURL: '/auth/google/callback', // when the user give us permission to access their profile, the user is thrown back to this URL with a code from google attached to the URL
       proxy: true,
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (existingUser) {
+        // There is an existing user with the ID, do not create a new account
+        return done(null, existingUser); 
+      }
+      // There is no existing user with that ID, go ahead and create a new record
+      const newUser = await new User({
         googleId: profile.id,
-      }).then((existingUser) => {
-        if (existingUser) {
-          // There is an existing user with the ID, do not create a new account
-          done(null, existingUser);
-        } else {
-          // There is no existing user with that ID, go ahead and create a new record
-          new User({
-            googleId: profile.id,
-          })
-            .save()
-            .then((user) => done(null, user));
-        }
-      });
+      }).save();
+
+      await done(null, newUser);
     }
   )
 );

@@ -4,7 +4,12 @@ const { Schema } = mongoose;
 
 // Properties we want our users to have
 const userSchema = new Schema({
-  googleId: String
+  googleId: String,
+  credits: {
+    type: Number,
+    default: 0,
+  },
+  style: String,
 });
 
 // To create a collection of users (Table of users)
